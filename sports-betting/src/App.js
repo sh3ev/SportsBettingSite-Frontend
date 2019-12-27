@@ -2,12 +2,18 @@ import React from 'react';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
 
-function App() {
-  return (
-    <div>
-      <NavigationBar />
-    </div>
-  );
+
+
+export default class App extends React.Component {
+  
+
+
+  render() {
+    return (
+      <div className="container">
+        <NavigationBar />
+      </div>
+    );
+  }
 }
 
-export default App;

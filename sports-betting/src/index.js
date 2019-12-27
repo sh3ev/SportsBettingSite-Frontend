@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import LobbyList from './components/LobbyList';
+import Login from './components/Login';
+
 
 
 const routing = (
@@ -11,6 +13,7 @@ const routing = (
       <div>
         <Route path="/" component={App} />
         <Route path="/lobby" component={LobbyList} />
+        <Route path="/login" component={Login} />
       </div>
     </Router>
   )
