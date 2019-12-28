@@ -58,6 +58,9 @@ class SignIn extends React.Component {
 
       handleSubmit(e) {
         e.preventDefault();
+        const { history } = this.props;
+        history.push('/');
+
       }
     
     async login(){

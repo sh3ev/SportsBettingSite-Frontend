@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import LobbyList from './components/LobbyList';
 import Login from './components/Login';
-
+import Register from './components/Register';
 
 
 const routing = (
@@ -14,6 +14,7 @@ const routing = (
         <Route path="/" component={App} />
         <Route path="/lobby" component={LobbyList} />
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </div>
     </Router>
   )

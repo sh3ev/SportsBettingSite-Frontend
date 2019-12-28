@@ -18,4 +18,18 @@ const login = async (data) => {
     }
 }
 
-export { login } 
+const register = async (data) => {
+    const SIGNUP_ENDPOINT = `${SERVER_URL}/api/users`;
+    try {
+        let response = await axios({
+            method: 'post',
+            responseType: 'json',
+            url: SIGNUP_ENDPOINT,
+            data: data
+          });
+    } catch(e){
+        console.log(e);
+    }
+}
+
+export { login, register } 
