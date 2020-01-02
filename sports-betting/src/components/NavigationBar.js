@@ -25,6 +25,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+class Buttons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: ''
+    };
+  }
+  componentDidMount() {
+    this.setState({ name: this.props.name })
+  }
+  render() {
+    if (this.props.name)
+      return (
+        <div>
+          Logged as {this.state.name}
+        </div>)
+    else
+      return (<div>
+        <Button color="inherit" href="login">
+          Sign in
+        </Button>
+        <Button color="inherit" href="register">
+          Sign up
+  </Button></div>)
+  }
+
+
+}
+
+
 export default function ButtonAppBar() {
   const classes = useStyles();
 
@@ -43,12 +73,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Sports Betting
           </Typography>
-          <Button color="inherit" href="login">
-            Sign in
-          </Button>
-          <Button color="inherit" href="register">
-            Sign up
-          </Button>
+          <Buttons name={localStorage.getItem('name')} />
         </Toolbar>
       </AppBar>
     </div>

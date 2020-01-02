@@ -9,8 +9,8 @@ const login = async data => {
 
     if (response.status === 200 && response.data) {
       let jwt = response.headers['x-auth-token'];
-      console.log(jwt);
       localStorage.setItem('x-auth-token', jwt);
+      localStorage.setItem('name', response.data);
     }
   } catch (e) {
     console.log(e);
