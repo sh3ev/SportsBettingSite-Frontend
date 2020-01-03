@@ -9,7 +9,7 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
       <CssBaseline /> 
-      { //tutaj dodajemy komponenty, które chcemy wyświetlić na stronie!
+      { //add your components inside...
         <div className="container">
           <NavigationBar />
         </div>

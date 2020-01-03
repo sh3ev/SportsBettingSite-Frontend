@@ -129,7 +129,7 @@ export default function ButtonAppBar() {
                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                           <MenuItem onClick={handleClose}>My Profile</MenuItem>
                           <MenuItem onClick={handleClose}>My Lobbies</MenuItem>
-                          <MenuItem onClick={handleClose}>Find Lobby</MenuItem>
+                          <MenuItem onClick={handleClose}>Add Lobby</MenuItem>
                           <MenuItem onClick={handleClose}>Bets</MenuItem>
                           <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </MenuList>
