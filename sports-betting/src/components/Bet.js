@@ -31,7 +31,7 @@ export default class Bets extends React.Component {
         },
       });}
     
-    componentDidMount() {
+    componentDidMount() { //pobranie wyniku meczu po ID zakładu 
         backend.put(`/fixtures/`+this.props.bet.fixtureID).then(res => {
           const fixture = res.data;
           this.setState({ fixture });
@@ -39,37 +39,35 @@ export default class Bets extends React.Component {
       }
 
     render() {
-        const classes = this.useStyles();
+        const classes = this.useStyles(); //wpisanie danych do karty 
         return (
             <div>
-           <Card className={classes.card}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-        {this.state.fixture.homeTeamName} - {this.state.fixture.awayTeamName}
-        </Typography>
-        
-        <Typography className={classes.pos} color="textSecondary">
-        {this.state.fixture.status}
-        </Typography>
-        <Typography  className={classes.pos} color="textSecondary">
-       Score
-        </Typography>
-        <Typography variant="body2" component="p">
-        {this.state.fixture.score ? this.state.fixture.score : "Not finished"}
-        </Typography>
-        <Typography  className={classes.pos} color="textSecondary">
-        My Bet
-        </Typography>
-        <Typography variant="body2" component="p">
-        {this.props.bet.fixtureBet}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Change</Button>
-      </CardActions>
-    </Card>
-          </div>
-        
+                <Card className={classes.card}> 
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {this.state.fixture.homeTeamName} - {this.state.fixture.awayTeamName}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            {this.state.fixture.status}
+                        </Typography>
+                        <Typography  className={classes.pos} color="textSecondary">
+                            Score
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            {this.state.fixture.score ? this.state.fixture.score : "Not finished"}
+                        </Typography>
+                        <Typography  className={classes.pos} color="textSecondary">
+                            My Bet
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            {this.props.bet.fixtureBet}
+                        </Typography>
+                    </CardContent>
+                    {/* <CardActions>
+                        <Button size="small">Change bet</Button>
+                    </CardActions> */}
+                </Card>
+            </div> 
         );
       }
 }  

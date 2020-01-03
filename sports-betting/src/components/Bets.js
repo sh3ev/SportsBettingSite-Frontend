@@ -5,12 +5,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-export default class Bets extends React.Component {
+export default class Bets extends React.Component { //rozszerzenie klasy 
     state = {
       bets: []
     };
 
-    componentDidMount() {
+    componentDidMount() { //pobranie danych z bazy usera 
         backend.get(`/users/me`).then(res => {
           const bets = res.data.usersBets;
           this.setState({ bets });
@@ -18,22 +18,20 @@ export default class Bets extends React.Component {
       }
 
     render() {
-        return (
+        return ( 
           <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Typography component="h1" variant="h5">
-            Bets
-          </Typography>
+            <CssBaseline />
+            <Typography component="h1" variant="h5">
+              Bets
+            </Typography>
             <div>
-            {this.state.bets.map(bet => 
-               (<div>{bet.bets.map(b => 
-               (<Bet bet={b}></Bet>)
-                )}</div>)
-            
-            )}
-        </div>
-         </Container>
-        
+              {this.state.bets.map(bet => //pobranie wyniku zakładu użytkownika 
+                (<div>{bet.bets.map(b => 
+                (<Bet bet={b}></Bet>)
+                  )}</div>)            
+                )}
+            </div>
+         </Container>    
         );
       }
 }  
