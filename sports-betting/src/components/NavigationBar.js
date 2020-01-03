@@ -109,7 +109,7 @@ export default function ButtonAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
-          > 
+          >
             <div>
               <MenuIcon
                 ref={anchorRef}
@@ -127,11 +127,30 @@ export default function ButtonAppBar() {
                     <Paper>
                       <ClickAwayListener onClickAway={handleClose}>
                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                          <MenuItem onClick={handleClose}>My Profile</MenuItem>
-                          <MenuItem onClick={handleClose}>My Lobbies</MenuItem>
-                          <MenuItem onClick={handleClose}>Add Lobby</MenuItem>
-                          <MenuItem onClick={handleClose}>Bets</MenuItem>
-                          <MenuItem onClick={handleClose}>Logout</MenuItem>
+                          <MenuItem onClick={handleClose}>
+                            <Button color="inherit" href="profile">
+                              My Profile
+                            </Button>
+                          </MenuItem>
+                          <MenuItem onClick={handleClose}>
+                            <Button color="inherit" href="lobby">
+                              All lobbies
+                            </Button></MenuItem>
+                          <MenuItem onClick={handleClose}>
+                            <Button color="inherit" href="addlobby">
+                              Add lobby
+                            </Button>
+                          </MenuItem>
+                          <MenuItem onClick={handleClose}>
+                            <Button color="inherit" href="bets">
+                              My bets
+                            </Button>
+                          </MenuItem>
+                          <MenuItem onClick={handleClose}>
+                            <Button color="inherit" href="logout">
+                              Log out
+                            </Button>
+                          </MenuItem>
                         </MenuList>
                       </ClickAwayListener>
                     </Paper>
@@ -140,13 +159,13 @@ export default function ButtonAppBar() {
               </Popper>
             </div>
           </IconButton>
-  
+
           <Typography variant="h6" className={classes.title}>
             Sports Betting
           </Typography>
           <Buttons name={localStorage.getItem('name')} />
         </Toolbar>
       </AppBar>
-    </div>
+    </div >
   );
 }
