@@ -9,65 +9,85 @@ import Typography from '@material-ui/core/Typography';
 
 
 export default class Bets extends React.Component {
-    state = {
-      fixture:{}
-    };
+  state = {
+    fixture: {},
+    error: ''
+  };
 
-     useStyles() { 
-         return makeStyles({
-        card: {
-          minWidth: 275,
-        },
-        bullet: {
-          display: 'inline-block',
-          margin: '0 2px',
-          transform: 'scale(0.8)',
-        },
-        title: {
-          fontSize: 14,
-        },
-        pos: {
-          marginBottom: 12,
-        },
-      });}
-    
-    componentDidMount() { //pobranie wyniku meczu po ID zakładu 
-        backend.put(`/fixtures/`+this.props.bet.fixtureID).then(res => {
-          const fixture = res.data;
-          this.setState({ fixture });
-        });
+  useStyles() {
+    return makeStyles({
+      card: {
+        minWidth: 275,
+      },
+      bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+      },
+      title: {
+        fontSize: 14,
+      },
+      pos: {
+        marginBottom: 12,
+      },
+    });
+  }
+
+  componentDidMount() { //pobranie wyniku meczu po ID zakładu 
+    backend.get(`/fixtures/` + this.props.bet.fixtureID).then(res => {
+      if (res.status == 400) {
+        const error = "You have to be logged in to see your bets!"
+        this.setState({ error })
+      }
+      else {
+        const fixture = res.data;
+        this.setState({ fixture });
       }
 
-    render() {
-        const classes = this.useStyles(); //wpisanie danych do karty 
-        return (
-            <div>
-                <Card className={classes.card}> 
-                    <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            {this.state.fixture.homeTeamName} - {this.state.fixture.awayTeamName}
+    })
+  }
+
+  render() {
+    const classes = this.useStyles(); //wpisanie danych do karty 
+    if (this.state.error == '') {
+      return (
+        <div>
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>
+                {this.state.fixture.homeTeamName} - {this.state.fixture.awayTeamName}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                {this.state.fixture.status}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                Result
                         </Typography>
-                        <Typography className={classes.pos} color="textSecondary">
-                            {this.state.fixture.status}
+              <Typography variant="body2" component="p">
+                {this.state.fixture.score ? this.state.fixture.score : "Not finished"}
+              </Typography>
+              <Typography className={classes.pos} color="textSecondary">
+                My Bet
                         </Typography>
-                        <Typography  className={classes.pos} color="textSecondary">
-                            Score
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            {this.state.fixture.score ? this.state.fixture.score : "Not finished"}
-                        </Typography>
-                        <Typography  className={classes.pos} color="textSecondary">
-                            My Bet
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            {this.props.bet.fixtureBet}
-                        </Typography>
-                    </CardContent>
-                    {/* <CardActions>
+              <Typography variant="body2" component="p">
+                {this.props.bet.fixtureBet}
+              </Typography>
+            </CardContent>
+            {/* <CardActions>
                         <Button size="small">Change bet</Button>
                     </CardActions> */}
-                </Card>
-            </div> 
-        );
-      }
+          </Card>
+        </div>
+      );
+    }
+    else
+      return (
+        <Card className={classes.card}>
+          <CardContent>
+            {this.state.error}
+          </CardContent>
+
+        </Card>
+      )
+  }
 }  
