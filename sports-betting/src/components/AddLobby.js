@@ -13,82 +13,90 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
-
+import backend from '../api/betting-backend';
+import Avatar from '@material-ui/core/Avatar';
+import Link from '@material-ui/core/Link';
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  }));
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+}));
 
 export default class LobbyForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: ''
+    };
+  }
 
-    constructor() {
-      super();
-      this.state = {
-        name: '',
+  onChange = e => {
+    this.setState({ name: e.target.value });
+    console.log(this.state.name);
+  };
 
-      };
-    }
-  
-    onChange = (e) => {
-      this.setState({ [e.target.name]: e.target.value });
-    }
+  onSubmit = e => {
+    e.preventDefault();
+    const { name } = this.state;
+    backend
+      .post('/lobbies/',
+        { 'name': `${name}` }
+      )
+      .then(function (response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
+  };
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        const {name} = this.state;
-        axios({
-            method: 'post',
-            url: 'http://localhost:3001/api/lobbies',
-            data: {name: `${name}`},
-            })
-            .then(function (response) {
-                //handle success
-                console.log(response);
-            })
-            .catch(function (response) {
-                //handle error
-                console.log(response);
-            });
-      }
-  
-    render() {
-      const {name} = this.state;
-      return (
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
+  render() {
+    const { name } = this.state;
+    
+    return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div>
         <Typography component="h1" variant="h5">
-              Add Lobby
+          Add lobby
         </Typography>
         <form onSubmit={this.onSubmit}>
-          <Input
-          variant="outlined"
-          margin="normal"
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Lobby name"
             type="text"
+            id="name"
             name="name"
             value={name}
             onChange={this.onChange}
           />
-        <Button variant="contained" color="primary" type="submit">Add</Button>
+          <Button fullWidth variant="contained" color="primary" type="submit">
+            Submit
+          </Button>
         </form>
-        </Container>
-      );
-    }
+      </div>
+    </Container>
+    );
   }
-
-
+}
