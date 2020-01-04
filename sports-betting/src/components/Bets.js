@@ -8,14 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    '& > * + *': {
-      marginLeft: theme.spacing(2),
-    },
-  },
-}));
+
 
 export default class Bets extends React.Component { //rozszerzenie klasy 
   constructor(props) {
@@ -38,10 +31,20 @@ export default class Bets extends React.Component { //rozszerzenie klasy
       this.setState({ error: error })
     });
   }
+  useStyles() {
+    return makeStyles(theme => ({
+      root: {
+        display: 'flex',
+        '& > * + *': {
+          marginLeft: theme.spacing(2),
+        },
+      },
+    }));
 
+  }
   render() {
-    const classes = this.props;
-    if (this.state.error == 'none') {
+    const classes = this.useStyles();
+    if (this.state.error === 'none') {
       return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -72,7 +75,7 @@ export default class Bets extends React.Component { //rozszerzenie klasy
         </Container>
       );
     }
-    else if (this.state.error == '') {
+    else if (this.state.error === '') {
       return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />

@@ -16,12 +16,7 @@ import AddUser from './AddUser';
 export default class Lobby extends React.Component {
     constructor(props) {
         super(props);
-        this.takeData = this.takeData.bind(this);
-        this.state = {
-            users: [],
-            userBool: false
-
-        };
+        this.reRender = this.reRender.bind(this);
     }
     useStyles() {
         return makeStyles(theme => ({
@@ -45,27 +40,33 @@ export default class Lobby extends React.Component {
             }
         }));
     }
-
-    takeData() {
-        backend.get(`/lobbies/${this.props.lobbyID}/users`).then(res => {
-            const users = res.data;
-            if (res.status === 200 && users != "This lobby does not have users.")
-                this.setState({ users: users, userBool: true });
-
-            else
-                this.setState({ users: [{ "name": "There are no users" }] })
-        });
-
-    }
-
-    componentDidMount() {
-        this.takeData();
+    reRender() {
+        this.forceUpdate();
     }
 
 
 
     render() {
         const classes = this.useStyles();
+        let users = this.props.users.map(user => {
+            return <ListItem key={`${user.userID}+${this.props.lobbyID}`}>
+                <ListItemIcon>
+                    <AccountCircleIcon color={'primary'} />
+                </ListItemIcon>
+                <ListItemText
+                    primary={user.userName}
+                />
+            </ListItem>
+        })
+        if (this.props.users.length == 0)
+            users = <ListItem >
+                <ListItemIcon>
+                    <ClearIcon color={'secondary'} />
+                </ListItemIcon>
+                <ListItemText
+                    primary={'There are no users'}
+                />
+            </ListItem>
 
         return (
             <Card className={classes.card}>
@@ -76,24 +77,12 @@ export default class Lobby extends React.Component {
                     <Typography variant="h5" component="h2">
                         {this.props.lobbyName} <br /> <br />
                     </Typography>
-                    <Typography variant="body2" component="p">
+                    <Typography variant="body2" component="div">
                         <Typography variant="h6" className={classes.title}>
                             List of users
                     <div className={classes.demo}>
                                 <List >
-
-
-                                    {this.state.users.map(user =>
-                                        <ListItem key={`${user._id}+${this.props.lobbyID}`}>
-                                            <ListItemIcon>
-                                                {this.state.userBool ? <AccountCircleIcon color={'primary'} /> : <ClearIcon color={'secondary'} />}
-
-                                            </ListItemIcon>
-                                            <ListItemText
-                                                primary={user.name}
-                                            />
-                                        </ListItem>
-                                    )}
+                                    {users}
                                 </List>
                             </div>
                         </Typography>
@@ -101,7 +90,7 @@ export default class Lobby extends React.Component {
                 </CardContent>
                 <CardActions>
                     <Button size="small">Show more</Button>
-                    <AddUser lobbyID={this.props.lobbyID} rerenderParentCallback={this.takeData} />
+                    <AddUser lobbyID={this.props.lobbyID} rerenderParentCallback={this.reRender} />
                 </CardActions>
             </Card>
         );

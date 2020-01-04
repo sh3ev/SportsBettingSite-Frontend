@@ -33,11 +33,16 @@ export default class LobbyList extends React.Component {
       this.setState({ lobbies });
     });
 
-
   }
 
   render() {
     const classes = this.props;
+    const lobbiess = this.state.lobbies.map(lobby => {
+      return <Grid item xl={5} key={lobby._id}>
+        <Paper className={classes.paper}><Lobby lobbyName={lobby.name} lobbyID={lobby._id} users={lobby.users} /></Paper>
+      </Grid>
+    })
+
     if (this.state.lobbies != []) {
       return (
         <React.Fragment>
@@ -46,11 +51,7 @@ export default class LobbyList extends React.Component {
 
             <div className={classes.root}>
               <Grid container spacing={3} justify={'center'} wrap={'wrap'}>
-                {this.state.lobbies.map(lobby =>
-                  <Grid item xl={5} key={lobby._id}>
-                    <Paper className={classes.paper}><Lobby lobbyName={lobby.name} lobbyID={lobby._id} /></Paper>
-                  </Grid>
-                )}
+                {lobbiess}
               </Grid>
             </div>
           </Container>
