@@ -18,24 +18,6 @@ export default class Matches extends React.Component {
             name: '', date: '', matches :[ ]
           };
     }
-    // useStyles() {
-    //     return makeStyles({
-    //       card: {
-    //         minWidth: 275,
-    //       },
-    //       bullet: {
-    //         display: 'inline-block',
-    //         margin: '0 2px',
-    //         transform: 'scale(0.8)',
-    //       },
-    //       title: {
-    //         fontSize: 14,
-    //       },
-    //       pos: {
-    //         marginBottom: 12,
-    //       },
-    //     });
-    //   }
     useStyles() {
         return makeStyles(theme => ({
             card: {
@@ -72,12 +54,12 @@ export default class Matches extends React.Component {
           .post('/fixtures',
            {league: name, date: date}
           )
-          .then(function (response) {
+          .then((response) => {
             //handle success
-            this.setState({ matches: response });
+            this.setState({ matches: response.data });
             console.log(response);
           })
-          .catch(function (response) {
+          .catch((response)=>{
             //handle error
             console.log(response);
           });
@@ -98,6 +80,7 @@ render() {
               margin="dense"
               type="text"
               name="name"
+              placeholder="Legue name"
               value={name}
               onChange={this.onNameChange}
             />
@@ -106,6 +89,7 @@ render() {
               margin="dense"
               type="text"
               name="date"
+              placeholder="Date YYYY-MM-DD"
               value={date}
               onChange={this.onDateChange}
             />
@@ -122,7 +106,7 @@ render() {
                   </Typography>
                   <Typography variant="h6" component="h2">
                     Result
-                            </Typography>
+                  </Typography>
                   <Typography variant="body2" component="p">
                     {match.score}
                   </Typography>
