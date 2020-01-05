@@ -69,7 +69,6 @@ class SignIn extends React.Component {
         e.preventDefault();
         const { history } = this.props;
         history.push('/');
-
       }
     
     async login(){

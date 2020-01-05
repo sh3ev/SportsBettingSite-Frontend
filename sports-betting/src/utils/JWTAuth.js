@@ -11,6 +11,7 @@ const login = async data => {
       let jwt = response.headers['x-auth-token'];
       localStorage.setItem('x-auth-token', jwt);
       localStorage.setItem('name', response.data);
+      window.location.reload();
     }
   } catch (e) {
     console.log(e);
