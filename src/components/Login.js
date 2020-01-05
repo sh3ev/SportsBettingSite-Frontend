@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { login } from "../utils/JWTAuth.js";
 import { withStyles } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -40,9 +41,17 @@ const useStyles = makeStyles(theme => ({
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
+        const token = localStorage.getItem("x-auth-token");
+        
+        let loggedIn = true;
+        if(token == null){
+          loggedIn = false;
+        } 
+
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loggedIn
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -60,7 +69,6 @@ class SignIn extends React.Component {
         e.preventDefault();
         const { history } = this.props;
         history.push('/');
-
       }
     
     async login(){
@@ -75,7 +83,9 @@ class SignIn extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    if(this.state.loggedIn){
+      return <Redirect to="/"/>
+    }
     return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />
