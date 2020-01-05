@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import AddLobby from './components/AddLobby';
 import Bets from './components/Bets';
+import Logout from './components/Logout';
 
 const routing = (
     <Router>
@@ -16,6 +17,7 @@ const routing = (
         <Route path="/lobby" component={LobbyList} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/logout" component={Logout} />
         <Route path="/addlobby" component={AddLobby} />
         <Route path="/bets" component={Bets} />
       </div>

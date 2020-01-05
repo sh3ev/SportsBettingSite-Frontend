@@ -45,9 +45,10 @@ class Buttons extends React.Component {
   }
   componentDidMount() {
     this.setState({ name: this.props.name })
+    let token = localStorage.getItem("x-auth-token");
   }
   render() {
-    if (this.props.name)
+    if (this.props.name && this.token !== null)
       return (
         <div>
           Logged as {this.state.name}
@@ -147,7 +148,7 @@ export default function ButtonAppBar() {
                             </Button>
                           </MenuItem>
                           <MenuItem onClick={handleClose}>
-                            <Button color="inherit" href="logout">
+                            <Button color="inherit" href="/logout">
                               Log out
                             </Button>
                           </MenuItem>
