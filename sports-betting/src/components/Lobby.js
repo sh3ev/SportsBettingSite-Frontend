@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ClearIcon from '@material-ui/icons/Clear';
 import AddUser from './AddUser';
+import { Link } from '@material-ui/core';
 export default class Lobby extends React.Component {
     constructor(props) {
         super(props);
@@ -89,7 +90,9 @@ export default class Lobby extends React.Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
+                    <Link href={`/matches/${this.props.lobbyID}`}>
                     <Button size="small">Show more</Button>
+                    </Link>
                     <AddUser lobbyID={this.props.lobbyID} rerenderParentCallback={this.reRender} />
                 </CardActions>
             </Card>

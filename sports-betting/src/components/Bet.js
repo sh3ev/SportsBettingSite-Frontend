@@ -54,19 +54,19 @@ export default class Bets extends React.Component {
         <div>
           <Card className={classes.card}>
             <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
+              <Typography variant="h5" component="h2">
                 {this.state.fixture.homeTeamName} - {this.state.fixture.awayTeamName}
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 {this.state.fixture.status}
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
+              <Typography variant="h6" component="h2">
                 Result
                         </Typography>
               <Typography variant="body2" component="p">
                 {this.state.fixture.score ? this.state.fixture.score : "Not finished"}
               </Typography>
-              <Typography className={classes.pos} color="textSecondary">
+              <Typography variant="h6" component="h2">
                 My Bet
                         </Typography>
               <Typography variant="body2" component="p">
