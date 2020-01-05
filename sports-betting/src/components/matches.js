@@ -15,7 +15,7 @@ export default class Matches extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '', date: '', matches :[ ]
+            name: '', date: '', matches :[ ], bets: ''
           };
     }
     useStyles() {
@@ -46,7 +46,10 @@ export default class Matches extends React.Component {
       onDateChange = e => {
         this.setState({ date: e.target.value });
       };
-    
+    onBetChange = e => {
+        this.setState({ valueBet: e.target.value})
+    }
+//LEAGUE, DATE
       onSubmit = e => {
         e.preventDefault();
         const { name, date } = this.state;
@@ -64,9 +67,27 @@ export default class Matches extends React.Component {
             console.log(response);
           });
       };
+//USER BET
+        onSubmit = e => {
+            e.preventDefault();
+            const { value } = this.state;
+            backend
+            .post('/users/bets',
+            {bet: valueBet}
+            )
+            .then((response) => {
+                //handle success
+                this.setState({ bet: response.valueBet });
+                console.log(response);
+            })
+            .catch((response)=>{
+                //handle error
+                console.log(response);
+            });
+        };
 render() {
     const classes = this.useStyles(); 
-    const { name, date } = this.state;
+    const { name, date, valueBet } = this.state;
 
     return (
         <Container component="main" maxWidth="xs">
@@ -110,7 +131,17 @@ render() {
                   <Typography variant="body2" component="p">
                     {match.score}
                   </Typography>
-                  <Link href={`/fixtures/${this.props.match.params.lobbyId}/${match.fixture_id}`}>SHOW BETS</Link>
+                  <Input
+                    variant="outlined"
+                    margin="dense"
+                    type="text"
+                    name="name"
+                    placeholder="Your bet: a-b"
+                    value={date}
+                    onChange={this.onDateChange}
+                    />
+                  <Link href={`/fixtures/${this.props.match.params.lobbyId}/${match.fixture_id}`}>SHOW BETS</Link><br/>
+                  <Link href={`/fixtures/${this.props.match.params.lobbyId}/${match.fixture_id}`}>BET THIS MATCH</Link>
                 </CardContent>
               </Card>
             </div>
