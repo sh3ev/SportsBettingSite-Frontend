@@ -47,11 +47,11 @@ export default class Bets extends React.Component { //rozszerzenie klasy
     if (this.state.error === 'none') {
       return (
         <Container component="main" maxWidth="xs">
-          <CssBaseline />
+          <CssBaseline/>
           <Typography component="h1" variant="h5">
-            My Bets
-            </Typography>
-          <Divider variant="middle" />
+            My Bets 
+          </Typography>
+          <Divider variant="middle"/>
 
           <div>
             {this.state.bets.map(lobby =>
@@ -59,8 +59,8 @@ export default class Bets extends React.Component { //rozszerzenie klasy
                 <Typography component="h2" variant="h5">
                   {lobby.lobbyName}
                 </Typography>
-                <Typography component="h2" variant="h5">
-                  My total score:{lobby.score}
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                <br/>My total score:{lobby.score}<br/>
                 </Typography>
                 <div> {lobby.bets.map(b =>
                   <Bet bet={b}></Bet>
@@ -92,5 +92,5 @@ export default class Bets extends React.Component { //rozszerzenie klasy
         </Typography>
       </Container>)
     }
-  }
+ }
 }
