@@ -15,96 +15,7 @@ export default class Matches extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '', date: '', matches :[ //sztywne dane
-                {
-                    "_id": "5e0f56cbb67d650017c72ef1",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154454,
-                    "homeTeamName": "Arka Gdynia",
-                    "awayTeamName": "Cracovia Krakow",
-                    "score": "5-2",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef2",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154455,
-                    "homeTeamName": "Korona Kielce",
-                    "awayTeamName": "Gornik Zabrze",
-                    "score": "3-4",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef3",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154456,
-                    "homeTeamName": "Lech Poznan",
-                    "awayTeamName": "Raków Częstochowa",
-                    "score": "1-1",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef4",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154457,
-                    "homeTeamName": "Legia Warszawa",
-                    "awayTeamName": "ŁKS Łódź",
-                    "score": "3-2",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef5",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154458,
-                    "homeTeamName": "Piast Gliwice",
-                    "awayTeamName": "Zaglebie Lubin",
-                    "score": "0-0",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef6",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154459,
-                    "homeTeamName": "Slask Wroclaw",
-                    "awayTeamName": "Lechia Gdansk",
-                    "score": "2-1",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef8",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154461,
-                    "homeTeamName": "Wisla Plock",
-                    "awayTeamName": "Pogon Szczecin",
-                    "score": "3-3",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                },
-                {
-                    "_id": "5e0f56cbb67d650017c72ef7",
-                    "league_name": "Ekstraklasa",
-                    "fixture_id": 154460,
-                    "homeTeamName": "Wisla Krakow",
-                    "awayTeamName": "Jagiellonia",
-                    "score": "2-2",
-                    "date": "2020-02-07T00:00:00+00:00",
-                    "status": "Time to be defined",
-                    "__v": 0
-                }
-            ]
+            name: '', date: '', matches :[ ]
           };
     }
     // useStyles() {
@@ -163,7 +74,7 @@ export default class Matches extends React.Component {
           )
           .then(function (response) {
             //handle success
-            // this.setState({ matches: response });
+            this.setState({ matches: response });
             console.log(response);
           })
           .catch(function (response) {

@@ -15,26 +15,7 @@ export default class Fixtures extends React.Component {
         super(props);
         this.state = {
             error: '',
-            matches:[{ //sztywne dane
-                name:"mecz",
-                score:"1-0",
-                message:"you won"
-            },
-            {
-                name:"mecz 2",
-                score:"1-0",
-                message:"you won"
-            },
-            {
-                name:"mecz 3",
-                score:"1-3",
-                message:"you lost"
-            },
-            {
-                name:"mecz 4",
-                score:"1-0",
-                message:"you won"
-            }]
+            matches:[]
           };
     }
     
@@ -60,7 +41,7 @@ export default class Fixtures extends React.Component {
 
         backend.get(`/lobbies/${this.props.match.params.lobbyId}/${this.props.match.params.fixtureId}/check`).then(res => {
           const matches = res.data;
-        //   this.setState({ matches });
+             this.setState({ matches });
           this.setState({ error: "none" })
     
     

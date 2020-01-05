@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -128,28 +129,38 @@ export default function ButtonAppBar() {
                       <ClickAwayListener onClickAway={handleClose}>
                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                           <MenuItem onClick={handleClose}>
-                            <Button color="inherit" href="profile">
+                            <Link href="/profile">
+                            <Button color="inherit">
                               My Profile
                             </Button>
+                            </Link>
                           </MenuItem>
                           <MenuItem onClick={handleClose}>
-                            <Button color="inherit" href="lobby">
+                            <Link href="/lobby">
+                            <Button color="inherit">
                               All lobbies
-                            </Button></MenuItem>
+                            </Button>
+                            </Link></MenuItem>
                           <MenuItem onClick={handleClose}>
-                            <Button color="inherit" href="addlobby">
+                            <Link href="/addlobby">
+                            <Button color="inherit">
                               Add lobby
                             </Button>
+                            </Link>
                           </MenuItem>
                           <MenuItem onClick={handleClose}>
-                            <Button color="inherit" href="bets">
+                          <Link href="/bets">
+                            <Button color="inherit">
                               My bets
                             </Button>
+                            </Link>
                           </MenuItem>
                           <MenuItem onClick={handleClose}>
-                            <Button color="inherit" href="logout">
+                          <Link href="/logout">
+                            <Button color="inherit">
                               Log out
                             </Button>
+                            </Link>
                           </MenuItem>
                         </MenuList>
                       </ClickAwayListener>
