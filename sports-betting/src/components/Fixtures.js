@@ -81,24 +81,27 @@ render() {
           <CssBaseline />
   
         <div>
+          <Typography variant="h5" component="h2">
+              User {}
+            </Typography>
         <Card className={classes.card}>
           <CardContent>
-            {/* <Typography variant="h5" component="h2">
-              Lista
-            </Typography> */}
+          <Typography variant="h5" component="h2">
+              Match {}
+            </Typography>
             <Typography className={classes.pos} color="textSecondary">
             {match.name}
             </Typography>
-            <Typography variant="h6" component="h2">
-              Result
+            <Typography variant="h5" component="h2">
+             Comment
                       </Typography>
-            <Typography variant="body2" component="p">
+            <Typography className={classes.pos} color="textSecondary">
               {match.message}
             </Typography>
-            <Typography variant="h6" component="h2">
+            <Typography variant="h5" component="h2">
               Bet
                       </Typography>
-            <Typography variant="body2" component="p">
+            <Typography className={classes.pos} color="textSecondary">
               {match.score}
             </Typography>
           </CardContent>

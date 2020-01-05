@@ -92,5 +92,5 @@ export default class Bets extends React.Component { //rozszerzenie klasy
         </Typography>
       </Container>)
     }
-  }
+ }
 }
