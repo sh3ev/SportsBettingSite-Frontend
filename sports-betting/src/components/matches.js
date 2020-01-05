@@ -70,7 +70,7 @@ export default class Matches extends React.Component {
 //USER BET
         onSubmit = e => {
             e.preventDefault();
-            const { value } = this.state;
+            const { valueBet } = this.state;
             backend
             .post('/users/bets',
             {bet: valueBet}
